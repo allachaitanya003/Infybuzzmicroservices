@@ -1,0 +1,16 @@
+package com.example.demo.client;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import com.example.demo.request.AddressRequest;
+import com.example.demo.response.AddressResponse;
+
+@FeignClient(url="${address.service.url}",value = "address-feign-client",path = "/api/address")
+public interface AddressClient {
+	
+	@PostMapping("/create")
+	public AddressResponse createAddress(@RequestBody AddressRequest request);
+
+}

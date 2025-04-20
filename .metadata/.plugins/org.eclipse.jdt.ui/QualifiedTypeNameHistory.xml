@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="org.springframework.boot.autoconfigure.domain.EntityScan"/>
+    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.config.EnableJpaRepositories"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.Table"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.Id"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.GeneratedValue"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Repository"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
+    <fullyQualifiedTypeName name="com.example.demo.request.AddressRequest"/>
+    <fullyQualifiedTypeName name="com.example.demo.entity.Address"/>
+    <fullyQualifiedTypeName name="com.example.demo.response.StudentResponse"/>
+    <fullyQualifiedTypeName name="org.springframework.cloud.loadbalancer.annotation.LoadBalancerClient"/>
+    <fullyQualifiedTypeName name="feign.Feign"/>
+    <fullyQualifiedTypeName name="feign.Feign.Builder"/>
+    <fullyQualifiedTypeName name="org.springframework.cloud.client.loadbalancer.LoadBalanced"/>
+    <fullyQualifiedTypeName name="org.springframework.context.annotation.Configuration"/>
+    <fullyQualifiedTypeName name="reactor.core.publisher.Mono"/>
+    <fullyQualifiedTypeName name="io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker"/>
+    <fullyQualifiedTypeName name="com.example.demo.response.AddressResponse"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="org.slf4j.LoggerFactory"/>
+    <fullyQualifiedTypeName name="org.slf4j.Logger"/>
+    <fullyQualifiedTypeName name="org.springframework.cloud.config.server.EnableConfigServer"/>
+    <fullyQualifiedTypeName name="org.springframework.cloud.client.discovery.EnableDiscoveryClient"/>
+</qualifiedTypeNameHistroy>

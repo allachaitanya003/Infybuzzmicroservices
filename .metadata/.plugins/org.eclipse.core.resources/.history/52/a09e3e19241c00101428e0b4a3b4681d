@@ -1,0 +1,39 @@
+package com.example.demo.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.entity.Student;
+import com.example.demo.repository.StudentRepository;
+import com.example.demo.request.StudentRequest;
+import com.example.demo.response.StudentResponse;
+
+@Service
+public class StudentService {
+	
+	@Autowired
+	StudentRepository repo;
+	
+	public StudentResponse createStudent(StudentRequest request) {
+		
+		Student student = new Student();
+		student.setFirstName(request.getFirstName());
+		student.setLastName(request.getLastName());
+		student.setEmail(request.getEmail());
+		student.setAddressId(request.getAddressId());
+		
+		student = repo.save(student);
+		
+		StudentResponse response = new StudentResponse(student);
+		
+		return response;
+	}
+
+	public StudentResponse getById(Long id) {
+		
+		Student student = repo.findById(id).get();
+		StudentResponse response = new StudentResponse(student);
+		return response;
+	}
+
+}

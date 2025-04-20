@@ -1,0 +1,26 @@
+/*
+ * package com.example.demo.client;
+ * 
+ * import org.springframework.cloud.client.loadbalancer.LoadBalanced; import
+ * org.springframework.cloud.loadbalancer.annotation.LoadBalancerClient; import
+ * org.springframework.context.annotation.Bean;
+ * 
+ * import feign.Feign;
+ * 
+ * @LoadBalancerClient(value="address-service") public class
+ * AddressServiceLoadBalance {
+ * 
+ * @LoadBalanced
+ * 
+ * @Bean public Feign.Builder feignBuilder(){
+ * 
+ * return Feign.builder();
+ * 
+ * }
+ * 
+ * }
+ * 
+ * 
+ */
+
+//API gateway internally uses load balacing so above code is not required

@@ -1,0 +1,8 @@
+package com.example.demo.client;
+
+import org.springframework.cloud.loadbalancer.annotation.LoadBalancerClient;
+
+@LoadBalancerClient(value="address-service")
+public class AddressServiceLoadBalance {
+
+}

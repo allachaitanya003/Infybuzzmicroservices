@@ -1,0 +1,34 @@
+package com.example.demo.service;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.entity.Address;
+import com.example.demo.repository.AddressRepository;
+import com.example.demo.request.AddressRequest;
+import com.example.demo.response.AddressResponse;
+
+@Service
+public class AddressService {
+	
+	Logger logger = LoggerFactory.getLogger(AddressService.class);
+	
+	@Autowired
+	AddressRepository repo;
+
+	public AddressResponse createAddress(AddressRequest request) {
+		Address addr = new Address();
+		addr.setStreet(request.getStreet());
+		addr.setCity(request.getCity());
+		repo.save(addr);
+		return new AddressResponse(addr);
+	}
+
+	public AddressResponse getById(Long id) {
+		Address addr = repo.findById(id).get();
+		return new AddressResponse(addr);
+	}
+
+}

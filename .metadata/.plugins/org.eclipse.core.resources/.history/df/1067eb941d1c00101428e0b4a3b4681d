@@ -1,0 +1,16 @@
+package com.example.demo.service;
+
+import org.springframework.stereotype.Service;
+
+import com.example.demo.request.AddressRequest;
+import com.example.demo.response.AddressResponse;
+
+@Service
+public class AddressService {
+
+	public AddressResponse createAddress(AddressRequest request) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

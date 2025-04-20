@@ -1,0 +1,69 @@
+package com.example.demo.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
+
+import com.example.demo.client.AddressClient;
+import com.example.demo.entity.Student;
+import com.example.demo.repository.StudentRepository;
+import com.example.demo.request.StudentRequest;
+import com.example.demo.response.AddressResponse;
+import com.example.demo.response.StudentResponse;
+
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+
+@Service
+public class StudentService {
+
+	@Autowired
+	StudentRepository repo;
+	@Autowired
+	WebClient webclient;
+	@Autowired
+	AddressClient addrClient;
+
+	public StudentResponse createStudent(StudentRequest request) {
+
+		Student student = new Student();
+		student.setFirstName(request.getFirstName());
+		student.setLastName(request.getLastName());
+		student.setEmail(request.getEmail());
+		student.setAddressId(request.getAddressId());
+		student = repo.save(student);
+
+		StudentResponse response = new StudentResponse(student);
+		response.setAddressResponse(getAddresById(student.getAddressId()));
+		//response.setAddressResponse(addrClient.getById(student.getAddressId()));
+		return response;
+	}
+
+	public StudentResponse getById(Long id) {
+
+		Student student = repo.findById(id).get();
+		StudentResponse response = new StudentResponse(student);
+		response.setAddressResponse(getAddresById(student.getAddressId()));
+		//response.setAddressResponse(addrClient.getById(student.getAddressId()));
+		return response;
+	}
+
+	@CircuitBreaker(name = "addressService",fallbackMethod = "fallbackGetAddressById")
+	public AddressResponse getAddresById(long addressId) {
+
+		/*
+		 * Mono<AddressResponse> addressResponse = webclient.get().uri("/getById/" +
+		 * addressId).retrieve() .bodyToMono(AddressResponse.class);
+		 * 
+		 * return addressResponse.block();
+		 */
+		
+		AddressResponse addressResponse = addrClient.getById(addressId);
+		return addressResponse;
+
+	}
+	
+	public AddressResponse fallbackGetAddressById(long addressId) {
+		new AddressResponse();
+	}
+
+}

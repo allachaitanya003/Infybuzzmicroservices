@@ -1,0 +1,38 @@
+package com.example.demo.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.client.AddressClient;
+import com.example.demo.response.AddressResponse;
+
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+@Service
+public class CommonService {
+	
+	@Autowired
+	AddressClient addrClient;
+	
+	@CircuitBreaker(name = "addressService",fallbackMethod = "fallbackGetAddressById")
+	public AddressResponse getAddresById(long addressId) {
+		
+		System.out.println("StudentService.getAddresById()");
+
+		/*
+		 * Mono<AddressResponse> addressResponse = webclient.get().uri("/getById/" +
+		 * addressId).retrieve() .bodyToMono(AddressResponse.class);
+		 * 
+		 * return addressResponse.block();
+		 */
+		
+		AddressResponse addressResponse = addrClient.getById(addressId);
+		return addressResponse;
+
+	}
+	
+	public AddressResponse fallbackGetAddressById(long addressId,Throwable th) {
+		System.out.println("StudentService.fallbackGetAddressById()");
+		return new AddressResponse();
+	}
+
+}
